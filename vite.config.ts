@@ -8,16 +8,6 @@ export default defineConfig({
   server: {
     host: true,
     port: 5005,
-    proxy: {
-      "/api" : {
-        target: "https://zerowaste-api:8088",
-        changeOrigin: true,
-        secure: true,      
-        ws: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-      },
-      
-    },
     watch: {
       usePolling: true,
     },

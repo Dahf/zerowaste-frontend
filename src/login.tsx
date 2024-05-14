@@ -13,18 +13,18 @@ const Login = () => {
 
     const refreshToken = async () => {
         try {
-            await axios.get('/api/token');
+            await axios.get('https://api.silasbeckmann.de/token');
             navigate("/");
         } catch (error) {
            //nothing
         }
     }
-    
+
     return (
         <Formik
         initialValues={{ }}
         onSubmit={(values, actions) => {
-            const promise = axios.post('/api/login', {
+            const promise = axios.post('https://api.silasbeckmann.de/login', {
                 email: values.name,
                 password: values.password
             })
