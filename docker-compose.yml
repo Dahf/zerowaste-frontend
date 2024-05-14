@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  backend:
+    build: .
+    container_name: zerowaste-frontend
+    image: zerowaste-frontend
+    command: npm run dev
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    networks:
+      - zerowaste-api_bridge
+      - traefik_proxy-net
+    hostname: "0.0.0.0" 
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.frontend.entrypoints=web,websecure
+      - traefik.http.services.frontend.loadbalancer.server.port=5005
+      - traefik.http.routers.frontend.rule=Host(`silasbeckmann.de`)
+      - traefik.http.routers.frontend.tls=true
+      - traefik.docker.network=traefik_proxy-net
+
+networks:
+  zerowaste-api_bridge:
+    external: true
+  postgres:
+    driver: bridge
+  traefik_proxy-net:
+    external: true
+
+volumes:
+    postgres:
+    pgadmin:
