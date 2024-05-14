@@ -4,7 +4,7 @@ services:
     build: .
     container_name: zerowaste-frontend
     image: zerowaste-frontend
-    command: npm start
+    command: npm run dev
     volumes:
       - .:/usr/app/
       - /usr/app/node_modules
