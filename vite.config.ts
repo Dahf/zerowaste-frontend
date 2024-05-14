@@ -21,9 +21,6 @@ export default defineConfig({
     watch: {
       usePolling: true,
     },
-    watch: {
-      usePolling: true,
-    },
   },
   base: 'https://silasbeckmann.de',
   build: {
