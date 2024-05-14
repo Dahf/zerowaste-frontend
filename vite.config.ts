@@ -10,7 +10,7 @@ export default defineConfig({
     port: 5005,
     proxy: {
       '/api': {
-        target: 'https://api.silasbeckmann.de', // Die URL von Traefik, die auf das Backend weiterleitet
+        target: 'http://zerowaste-api:8088', // Die URL von Traefik, die auf das Backend weiterleitet
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
