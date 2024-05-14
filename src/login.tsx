@@ -26,7 +26,7 @@ const Login = () => {
     
     return (
         <Formik
-        initialValues={{ name: 'Sasuke' }}
+        initialValues={{ }}
         onSubmit={(values, actions) => {
             setTimeout(() => {
             alert(JSON.stringify(values, null, 2))
@@ -41,7 +41,14 @@ const Login = () => {
               <FormControl isInvalid={form.errors.name && form.touched.name}>
                 <FormLabel>E-Mail</FormLabel>
                 <Input type='email' {...field} placeholder='E-Mail' />
-                <FormLabel>Passwort</FormLabel>
+                <FormErrorMessage>{form.errors.name}</FormErrorMessage>
+              </FormControl>
+            )}
+          </Field>
+          <Field name='password'>
+            {({ field, form }) => (
+              <FormControl isInvalid={form.errors.name && form.touched.name}>
+                <FormLabel>Password</FormLabel>
                 <Input type='password' {...field} placeholder='Password' />
                 <FormErrorMessage>{form.errors.name}</FormErrorMessage>
               </FormControl>
