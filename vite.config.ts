@@ -10,7 +10,7 @@ export default defineConfig({
     port: 5005,
     proxy: {
       "/api" : {
-        target: "https://api.silasbeckmann.de",
+        target: "https://zerowaste-api:8088",
         changeOrigin: true,
         secure: true,      
         ws: true,
