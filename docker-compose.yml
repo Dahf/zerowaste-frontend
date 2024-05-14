@@ -15,6 +15,8 @@ services:
       - zerowaste-api_bridge
       - traefik_proxy-net
     hostname: "0.0.0.0" 
+    ports:
+      - "5005:5005"
     labels:
       - traefik.enable=true
       - traefik.http.routers.frontend.entrypoints=web,websecure
