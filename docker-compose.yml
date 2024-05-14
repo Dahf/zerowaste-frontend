@@ -30,7 +30,3 @@ networks:
     driver: bridge
   traefik_proxy-net:
     external: true
-
-volumes:
-    postgres:
-    pgadmin:
