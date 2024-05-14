@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import { Button, FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react';
+import { Formik, Form, Field } from 'formik';
 
 const Login = () => {
     
@@ -22,101 +24,41 @@ const Login = () => {
         })
     }
     
-    
-   
-    const [value, setValue] = useState('')
     return (
+        <Formik
+        initialValues={{ name: 'Sasuke' }}
+        onSubmit={(values, actions) => {
+            setTimeout(() => {
+            alert(JSON.stringify(values, null, 2))
+            actions.setSubmitting(false)
+        }, 1000)
+      }}
+    >
+      {(props) => (
+        <Form>
+          <Field name='name'>
+            {({ field, form }) => (
+              <FormControl isInvalid={form.errors.name && form.touched.name}>
+                <FormLabel>E-Mail</FormLabel>
+                <Input type='email' {...field} placeholder='E-Mail' />
+                <FormLabel>Passwort</FormLabel>
+                <Input type='password' {...field} placeholder='Password' />
+                <FormErrorMessage>{form.errors.name}</FormErrorMessage>
+              </FormControl>
+            )}
+          </Field>
+          <Button
+            mt={4}
+            colorScheme='teal'
+            isLoading={props.isSubmitting}
+            type='submit'
+          >
+            Submit
+          </Button>
+        </Form>
+      )}
+    </Formik>
         
-        <AppShell >
-            <Page >
-                <PageBody p="0" contentWidth="full" >
-                    <Section w="60%" h="100%" margin="0 auto" justifyContent="center" maxW="500px" >
-                        <Image src='nehemialogo.png' py={"30"} onClick={() => { navigate("/")} } />
-                        <Card variant="outline">
-                            <CardBody >
-                                <Center>
-                                    <SectionHeader title="Melden Sie sich an"/>
-                                </Center>
-                                <Form  
-                                    defaultValues={{
-                                        title: '',
-                                        body: '',
-                                    }}
-                                    onSubmit={(params) => Auth(params.title, params.body)}
-                                >
-                                    <FormLayout>
-                                        <Field  
-                                            name="title"
-                                            label="E-Mail"
-                                            type="email"
-                                            rules={{ required: true }}
-                                        />
-
-                                        <Field
-                                            name="body"
-                                            type="password"
-                                            label="Password"
-                                            rules={{ required: true }}
-                                        />
-                                        <Center>
-                                            <SubmitButton>Anmelden</SubmitButton>
-                                        </Center>
-                                    </FormLayout>
-                                </Form>
-                                
-                            </CardBody>
-                            <CardFooter justifyContent="center">
-                                <VStack>
-                                    <Button variant="link" onClick={() => navigate("/register")} colorScheme='brand'>Registrieren Sie sich</Button>
-                                    
-                                    <Button variant="link" onClick={() => {
-                                        disclosure.onOpen()
-                                        
-                                    }}>Passwort vergessen?</Button>
-                                    <Modal {...disclosure}>
-                                        <ModalOverlay />
-                                        <ModalContent>
-                                        <ModalHeader>Passwort zurücksetzen</ModalHeader>
-                                        <ModalCloseButton />
-                                        <ModalBody>
-                                            <Input 
-                                                key="emailInput"
-                                                placeholder="Geben Sie Ihre E-Mail-Adresse ein" 
-                                                value={value}
-                                                onChange={(e) => {setValue(e.target.value); }} />
-                                        </ModalBody>
-
-                                        <ModalFooter>
-                                            <Button variant="ghost" onClick={disclosure.onClose}>Abbrechen</Button>
-                                            <Button colorScheme="primary" mr={3} onClick={async() => {
-                                                const response = await axios.post("/api/forgot-password", {
-                                                    email: value
-                                                })
-
-                                                toast({
-                                                    title: 'E-Mail gesendet',
-                                                    description: 'Wir haben Ihnen eine E-Mail gesendet.',
-                                                    status: 'success',
-                                                    duration: 9000,
-                                                    isClosable: true,
-                                                  });
-                                                
-                                                disclosure.onClose();
-                                            }}>
-                                                Senden
-                                            </Button>
-                                        </ModalFooter>
-                                        </ModalContent>
-                                    </Modal>
-
-                                    
-                                </VStack>
-                            </CardFooter>
-                        </Card>
-                    </Section>
-                </PageBody>
-            </Page>
-        </AppShell>
     )
 }
  
