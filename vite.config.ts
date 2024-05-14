@@ -9,14 +9,11 @@ export default defineConfig({
     host: true,
     port: 5005,
     proxy: {
-      "/api" : {
-        target: "http://zerowaste-api:8088",
+      '/api': {
+        target: 'https://api.silasbeckmann.de', // Die URL von Traefik, die auf das Backend weiterleitet
         changeOrigin: true,
-        secure: false,      
-        ws: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
-      
     },
     watch: {
       usePolling: true,
