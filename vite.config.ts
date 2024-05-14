@@ -9,7 +9,7 @@ export default defineConfig({
     port: 5005,
     proxy: {
       "/api" : {
-        target: "https://api.silasbeckmann.de/",
+        target: "https://api.silasbeckmann.de",
         changeOrigin: true,
         secure: true,      
         ws: true,
@@ -19,6 +19,16 @@ export default defineConfig({
     },
     watch: {
       usePolling: true,
+    },
+  },
+  base: 'https://silasbeckmann.de',
+  build: {
+    rollupOptions: {
+      
+      input: {
+        main: resolve(__dirname, 'index.html'),
+
+      },
     },
   },
 })
