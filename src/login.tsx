@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 import { Button, FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
 
 const Login = () => {
-    
+
+    const navigate = useNavigate();
     useEffect(() => {
         refreshToken();
     }, []);
@@ -12,27 +14,21 @@ const Login = () => {
     const refreshToken = async () => {
         try {
             await axios.get('/api/token');
-            navigate("/dashboard/home");
+            navigate("/");
         } catch (error) {
            //nothing
         }
-    }
-    const Auth = async (email: string, password: string) => {
-        const promise = axios.post('/api/login', {
-            email: email,
-            password: password
-        })
     }
     
     return (
         <Formik
         initialValues={{ }}
         onSubmit={(values, actions) => {
-            setTimeout(() => {
-            alert(JSON.stringify(values, null, 2))
-            actions.setSubmitting(false)
-        }, 1000)
-      }}
+            const promise = axios.post('/api/login', {
+                email: values.name,
+                password: values.password
+            })
+        }}
     >
       {(props) => (
         <Form>
