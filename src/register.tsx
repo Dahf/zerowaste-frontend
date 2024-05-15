@@ -71,13 +71,15 @@ const Register = () => {
                           email: values.email,
                           password: values.password
                       })
+
+                    actions.setSubmitting(false);
                   }}
               >
                 {(props) => (
                   <Form>
                     <Field name='vorname'>
                       {({ field, form }) => (
-                        <FormControl isInvalid={form.errors.name && form.touched.name}>
+                        <FormControl isInvalid={form.errors.vorname && form.touched.vorname}>
                           <FormLabel>Vorname</FormLabel>
                           <Input type='text' {...field} placeholder='Max' />
                           <FormErrorMessage>{form.errors.name}</FormErrorMessage>
@@ -86,7 +88,7 @@ const Register = () => {
                     </Field>
                     <Field name='nachname'>
                       {({ field, form }) => (
-                        <FormControl isInvalid={form.errors.name && form.touched.name}>
+                        <FormControl isInvalid={form.errors.nachname && form.touched.nachname}>
                           <FormLabel>Nachname</FormLabel>
                           <Input type='text' {...field} placeholder='Mustermann' />
                           <FormErrorMessage>{form.errors.name}</FormErrorMessage>
@@ -95,7 +97,7 @@ const Register = () => {
                     </Field>
                     <Field name='email'>
                       {({ field, form }) => (
-                        <FormControl isInvalid={form.errors.name && form.touched.name}>
+                        <FormControl isInvalid={form.errors.email && form.touched.email}>
                           <FormLabel>E-Mail</FormLabel>
                           <Input type='email' {...field} placeholder='max.mustermann9@gmail.com' />
                           <FormErrorMessage>{form.errors.name}</FormErrorMessage>
@@ -104,7 +106,7 @@ const Register = () => {
                     </Field>
                     <Field name='password'>
                       {({ field, form }) => (
-                        <FormControl isInvalid={form.errors.name && form.touched.name}>
+                        <FormControl isInvalid={form.errors.password && form.touched.password}>
                           <FormLabel>Password</FormLabel>
                           <Input type='password' {...field} placeholder='Password' />
                           <FormErrorMessage>{form.errors.name}</FormErrorMessage>

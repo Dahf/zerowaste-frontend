@@ -16,7 +16,7 @@ const Login = () => {
     const refreshToken = async () => {
         try {
             await axios.get('/api/token');
-            navigate("/");
+            navigate("/meals");
         } catch (error) {
            //nothing
         }
@@ -35,6 +35,8 @@ const Login = () => {
                         email: values.name,
                         password: values.password
                     })
+
+                    actions.setSubmitting(false);
                 }}
             >
               {(props) => (
@@ -50,7 +52,7 @@ const Login = () => {
                   </Field>
                   <Field name='password'>
                     {({ field, form }) => (
-                      <FormControl isInvalid={form.errors.name && form.touched.name}>
+                      <FormControl isInvalid={form.errors.password && form.touched.password}>
                         <FormLabel>Password</FormLabel>
                         <Input type='password' {...field} placeholder='Password' />
                         <FormErrorMessage>{form.errors.name}</FormErrorMessage>

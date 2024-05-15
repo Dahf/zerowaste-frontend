@@ -5,6 +5,7 @@ import App from './App'
 import Login from './login'
 import { SaasProvider } from '@saas-ui/react'
 import Register from './register'
+import Meals from './dashboard/meals'
 const rootElement = document.getElementById('root')
 
 ReactDOM.createRoot(rootElement!).render(
@@ -16,6 +17,7 @@ ReactDOM.createRoot(rootElement!).render(
             <Route index element={<App />}/>
             <Route path="login" element={<Login/>}/>
             <Route path="register" element={<Register/>}/>
+            <Route path="meals" element={<Meals/>}/>
           </Route>
         </Routes>
       </BrowserRouter>
