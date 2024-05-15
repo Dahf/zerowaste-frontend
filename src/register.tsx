@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import axios from 'axios';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Box, Button, Center, FormControl, FormErrorMessage, FormLabel, HStack, Input, Spacer, Stack } from '@chakra-ui/react';
 import { BackgroundGradient } from '../components/gradients/background-gradient';
 import { Section } from '../components/section';

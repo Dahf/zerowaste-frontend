@@ -5,17 +5,6 @@ import { resolve } from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  preview: {
-    host: true,
-    port: 5005,
-    proxy: {
-      '/api': {
-        target: 'http://zerowaste-api:8088', // Die URL von Traefik, die auf das Backend weiterleitet
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-      },
-    },
-  },
   server: {
     host: true,
     port: 5005,
