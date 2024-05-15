@@ -1,5 +1,5 @@
 # Verwenden Sie ein spezifisches Node.js-Image
-FROM node:latest
+FROM node:19.5.0-alpine
 
 WORKDIR /usr/src/app
 
