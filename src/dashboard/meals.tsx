@@ -64,6 +64,7 @@ const Meals = () => {
 
     const handleSubmit = async (params) => {
         const formData = new FormData();
+        console.log(params)
         for (const key in params) {
             if (key === 'file') {
                 formData.append('image', params.file); // Datei mit dem Namen 'image' anhängen
@@ -75,8 +76,6 @@ const Meals = () => {
         try {
             const response = await axios.post('/api/meal', {
                 formData
-            }, {
-              
             });
 
             if (response.ok) {
