@@ -77,7 +77,6 @@ const Meals = () => {
                 method: 'POST',
                 credentials: "include",
                 headers: {
-                  "Content-Type": "application/json",
                   "Access-Control-Allow-Credentials": "true",
                 },
                 body: formData,
