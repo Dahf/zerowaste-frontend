@@ -75,6 +75,11 @@ const Meals = () => {
         try {
             const response = await fetch('/api/meal', {
                 method: 'POST',
+                credentials: "include",
+                headers: {
+                  "Content-Type": "application/json",
+                  "Access-Control-Allow-Credentials": "true",
+                },
                 body: formData,
             });
 
@@ -202,19 +207,19 @@ const Meals = () => {
                     <ArrayField name="ingredients">
                         <Field
                             name={`ingredients.$.name`}
-                            label={`Ingredient Name $`}
+                            label={`Ingredient Name`}
                             type="text"
                             placeholder="Ingredient Name"
                         />
                         <Field
                             name={`ingredients.$.measure`}
-                            label={`Measure $`}
+                            label={`Measure`}
                             type="text"
                             placeholder="Measure"
                         />
                         <Field
                             name={`ingredients.$.quantity`}
-                            label={`Quantity $`}
+                            label={`Quantity`}
                             type="text"
                             placeholder="Quantity"
                         />
