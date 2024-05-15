@@ -33,11 +33,6 @@ const Login = () => {
                 onSubmit={async (values, actions) => {
                     await fetch('/api/login', {
                       method: "POST",
-                      credentials: "include",
-                      headers: {
-                        "Content-Type": "application/json",
-                        "Access-Control-Allow-Credentials": "true",
-                      },
                       body: JSON.stringify({
                         email: values.name,
                         password: values.password,
