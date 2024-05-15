@@ -34,8 +34,6 @@ const Login = () => {
                     const response = await axios.post('/api/login', {
                         email: values.email,
                         password: values.password
-                    }, {
-                        withCredentials: true
                     });
                     navigate("/meals");
                     actions.setSubmitting(false);
