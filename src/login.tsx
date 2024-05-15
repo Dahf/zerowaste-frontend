@@ -43,12 +43,12 @@ const Login = () => {
             >
               {(props) => (
                 <Form>
-                  <Field name='name'>
+                  <Field name='email'>
                     {({ field, form }) => (
-                      <FormControl isInvalid={form.errors.name && form.touched.name}>
+                      <FormControl isInvalid={form.errors.email && form.touched.email}>
                         <FormLabel>E-Mail</FormLabel>
                         <Input type='email' {...field} placeholder='E-Mail' />
-                        <FormErrorMessage>{form.errors.name}</FormErrorMessage>
+                        <FormErrorMessage>{form.errors.email}</FormErrorMessage>
                       </FormControl>
                     )}
                   </Field>
