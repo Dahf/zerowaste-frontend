@@ -1,5 +1,5 @@
 # Verwenden Sie ein spezifisches Node.js-Image
-FROM node:20
+FROM node:latest
 
 WORKDIR /usr/src/app
 
