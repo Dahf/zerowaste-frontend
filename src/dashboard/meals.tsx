@@ -82,6 +82,7 @@ const Meals = () => {
                     ingredients: [{ name: '', measure: '', quantity: '' }],
                 }}
                 onSubmit={async (params) => {
+                    console.log(params);
                     const formData = new FormData();
                     formData.append('name', params.name);
                     formData.append('description', params.description);
@@ -96,6 +97,7 @@ const Meals = () => {
                     formData.append('ingredients', JSON.stringify(params.ingredients));
                     if(params.file)
                         formData.append('file', params.file);
+
                     try {
                         console.log(formData);
                         return fetch('/api/meal', {
