@@ -78,7 +78,7 @@ const HeroSection: React.FC = () => {
           >
             <FallInPlace delay={0.8}>
               <ButtonGroup spacing={4} pr={"5"} pt={"5"} alignItems="center">
-                <ButtonLink colorScheme="primary" size="lg" href="/signup">
+                <ButtonLink colorScheme="primary" size="lg" href="/register">
                   Get Started
                 </ButtonLink>
                 <ButtonLink
@@ -215,8 +215,8 @@ const HighlightsSection = () => {
         </Text>
       </HighlightsItem>
       <HighlightsTestimonialItem
-        name="Jane Doe"
-        description="Founder, RecipeApp"
+        name="Silas Beckmann"
+        description="Founder, ZeroWaste"
         avatar="/static/images/avatar.jpg"
         gradient={["pink.200", "purple.500"]}
       >

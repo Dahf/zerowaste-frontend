@@ -1,5 +1,5 @@
 import { Button, ButtonProps } from '@chakra-ui/react'
-
+import { useNavigate } from 'react-router-dom'}
 export type ButtonLinkProps = LinkProps & ButtonProps
 
 export const ButtonLink: React.FC<ButtonLinkProps> = ({
@@ -7,11 +7,13 @@ export const ButtonLink: React.FC<ButtonLinkProps> = ({
   children,
   ...props
 }) => {
+
+  const navigate = useNavigate()
   return (
-    <a href={href}>
-      <Button {...props} >
-        {children}
-      </Button>
-    </a>
+   
+    <Button {...props} onClick={() => navigate(href)} >
+      {children}
+    </Button>
+    
   )
 }
