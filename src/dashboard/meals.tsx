@@ -75,6 +75,8 @@ const Meals = () => {
         try {
             const response = await axios.post('/api/meal', {
                 formData
+            }, {
+              
             });
 
             if (response.ok) {

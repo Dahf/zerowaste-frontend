@@ -6,7 +6,10 @@ import Login from './login'
 import { SaasProvider } from '@saas-ui/react'
 import Register from './register'
 import Meals from './dashboard/meals'
+import axios from "axios";
 const rootElement = document.getElementById('root')
+
+axios.defaults.withCredentials = true;
 
 ReactDOM.createRoot(rootElement!).render(
   <React.StrictMode>
