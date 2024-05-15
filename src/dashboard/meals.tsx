@@ -39,7 +39,7 @@ const Meals = () => {
                 }}
                 onSubmit={async (values, actions) => {
                     try {
-                    const response = await axios.post('/api/meals', values);
+                    const response = await axios.post('/api/meal', values);
                     console.log(response.data);
                     // Handle successful response
                     actions.setSubmitting(false);
