@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN NODE_ENV=development npm i
+RUN npm ci
 
 COPY . .
 
