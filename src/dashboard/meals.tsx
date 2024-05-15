@@ -68,7 +68,7 @@ const Meals = () => {
             if (key === 'file') {
                 formData.append('image', params.file); // Datei mit dem Namen 'image' anhängen
             } else {
-                formData.append(key, JSON.stringify(params[key]));
+                formData.append(key, params[key]);
             }
         }
 
