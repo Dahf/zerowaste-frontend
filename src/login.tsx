@@ -31,12 +31,9 @@ const Login = () => {
             <Formik
                 initialValues={{ }}
                 onSubmit={async (values, actions) => {
-                    await fetch('/api/login', {
-                      method: "POST",
-                      body: JSON.stringify({
+                    await axios.post('/api/login', {
                         email: values.name,
-                        password: values.password,
-                      }),
+                        password: values.password
                     })
                     navigate("/meals");
                     actions.setSubmitting(false);

@@ -73,13 +73,8 @@ const Meals = () => {
         }
 
         try {
-            const response = await fetch('/api/meal', {
-                method: 'POST',
-                credentials: "include",
-                headers: {
-                  "Access-Control-Allow-Credentials": "true",
-                },
-                body: formData,
+            const response = await axios.post('/api/meal', {
+                formData
             });
 
             if (response.ok) {
