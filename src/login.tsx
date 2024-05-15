@@ -35,7 +35,7 @@ const Login = () => {
                         email: values.name,
                         password: values.password
                     })
-
+                    navigate("/meals");
                     actions.setSubmitting(false);
                 }}
             >

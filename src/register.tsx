@@ -71,7 +71,7 @@ const Register = () => {
                           email: values.email,
                           password: values.password
                       })
-
+                    navigate("/");
                     actions.setSubmitting(false);
                   }}
               >

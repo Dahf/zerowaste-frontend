@@ -1,22 +1,67 @@
 import {
-  FormControl,
-  FormLabel,
-  Input,
-  FormErrorMessage,
   Button,
   HStack,
-  Spacer,
   Center,
   GridItem,
   SimpleGrid,
+  forwardRef,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import { Section } from '../../components/section';
 import { BackgroundGradient } from '../../components/gradients/background-gradient';
 import { PageTransition } from '../../components/motion/page-transition';
-import { Form, FormLayout, SubmitButton } from '@saas-ui/react';
-
+import { SubmitButton } from '@saas-ui/react';
+import { Text } from '@chakra-ui/react'
+import {
+  FileUpload,
+  FileUploadTrigger,
+  FileUploadDropzone,
+} from '@saas-ui/file-upload'
+import { Form, FormLayout, createField } from '@saas-ui/forms'
 const Meals = () => {
+
+    const UploadField = createField(
+        forwardRef((props, ref) => {
+          const { onChange, ...rest } = props
+          return (
+            <FileUpload
+              maxFileSize={1024 * 1024}
+              accept="image/*"
+              {...rest}
+              onFilesChange={(files) => {
+                onChange(files.acceptedFiles[0])
+              }}
+              maxFiles={1}
+              inputRef={ref}
+            >
+              {({ files, deleteFile }) => (
+                <FileUploadDropzone>
+                  <Text fontSize="sm">Drag your image here</Text>
+                  {!files?.length ? (
+                    <FileUploadTrigger as={Button}>Select files</FileUploadTrigger>
+                  ) : (
+                    <HStack>
+                      <Text fontSize="sm">{files[0].name}</Text>
+                      <Button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          deleteFile(files[0])
+                        }}
+                      >
+                        Clear
+                      </Button>
+                    </HStack>
+                  )}
+                </FileUploadDropzone>
+              )}
+            </FileUpload>
+          )
+        }),
+        {
+          isControlled: true,
+        }
+      )
+      
   return (
     <Section innerWidth="container.sm">
         <BackgroundGradient zIndex="-1" />
@@ -37,10 +82,32 @@ const Meals = () => {
                     ingredients: [{ name: '', measure: '', quantity: '' }],
                 }}
                 onSubmit={async (params) => {
-                    console.log(params);
+                    const formData = new FormData();
+                    formData.append('name', params.name);
+                    formData.append('description', params.description);
+                    formData.append('servingSize', params.servingSize);
+                    formData.append('calories', params.calories);
+                    formData.append('fat', params.fat);
+                    formData.append('carbohydrates', params.carbohydrates);
+                    formData.append('protein', params.protein);
+                    formData.append('fiber', params.fiber);
+                    formData.append('sugar', params.sugar);
+                    formData.append('sodium', params.sodium);
+                    formData.append('ingredients', JSON.stringify(params.ingredients));
+                    if(params.file)
+                        formData.append('file', params.file);
                     try {
-                    const response = await axios.post('/api/meal', params);
-                    console.log(response.data);
+                        console.log(formData);
+                        return fetch('/api/meal', {
+                            method: 'POST',
+                            body: formData,
+                        }).then((response) => {
+                            if (response.ok) {
+                                // Handle successful upload
+                            } else {
+                                // Handle error
+                            }
+                        })
                     } catch (error) {
                     console.error('Server error:', error.message);
                     }
@@ -62,7 +129,7 @@ const Meals = () => {
                         label="Description"
                         placeholder="Optional description"
                     />
-
+                    <UploadField name="file" label="Meal Image" />
                     <Field
                         name="servingSize"
                         label="Serving Size"
