@@ -31,10 +31,15 @@ const Login = () => {
             <Formik
                 initialValues={{ }}
                 onSubmit={async (values, actions) => {
-                    Promise.resolve(axios.post('/api/login', {
-                        email: values.name,
+                    const response = await axios.post('/api/login', {
+                        email: values.email,
                         password: values.password
-                    }))
+                    }, {
+                        withCredentials: true, // Wichtig, damit Cookies gesendet werden
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
                     navigate("/meals");
                     actions.setSubmitting(false);
                 }}
