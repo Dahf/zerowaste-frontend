@@ -35,10 +35,7 @@ const Login = () => {
                         email: values.email,
                         password: values.password
                     }, {
-                        withCredentials: true, // Wichtig, damit Cookies gesendet werden
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
+                        withCredentials: true
                     });
                     navigate("/meals");
                     actions.setSubmitting(false);
