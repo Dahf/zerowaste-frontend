@@ -18,7 +18,7 @@ const Register = () => {
     const refreshToken = async () => {
         try {
             await axios.get('/api/token');
-            navigate("/");
+            navigate("/meals");
         } catch (error) {
            //nothing
         }
