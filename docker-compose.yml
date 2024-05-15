@@ -7,7 +7,7 @@ services:
     command: npm run dev
     volumes:
       - .:/usr/app/
-      - /usr/app/node_modules
+      - node_modules:/usr/app/node_modules
     stdin_open: true
     tty: true
     restart: unless-stopped
@@ -32,3 +32,6 @@ networks:
     driver: bridge
   traefik_proxy-net:
     external: true
+    
+volumes:
+  node_modules:
