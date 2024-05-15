@@ -61,7 +61,34 @@ const Meals = () => {
           isControlled: true,
         }
       )
-      
+
+    const handleSubmit = async (params) => {
+        const formData = new FormData();
+        for (const key in params) {
+            if (key === 'file') {
+                formData.append('image', params.file[0]); // Datei mit dem Namen 'image' anhängen
+            } else {
+                formData.append(key, JSON.stringify(params[key]));
+            }
+        }
+
+        try {
+            const response = await fetch('/api/meal', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (response.ok) {
+                // Handle successful upload
+                console.log('Upload successful');
+            } else {
+                // Handle error
+                console.error('Upload failed');
+            }
+        } catch (error) {
+            console.error('Server error:', error.message);
+        }
+    };
   return (
     <Section innerWidth="container.sm">
         <BackgroundGradient zIndex="-1" />
@@ -81,39 +108,7 @@ const Meals = () => {
                     sodium: '',
                     ingredients: [{ name: '', measure: '', quantity: '' }],
                 }}
-                onSubmit={async (params) => {
-                    console.log(params);
-                    const formData = new FormData();
-                    formData.append('name', params.name);
-                    formData.append('description', params.description);
-                    formData.append('servingSize', params.servingSize);
-                    formData.append('calories', params.calories);
-                    formData.append('fat', params.fat);
-                    formData.append('carbohydrates', params.carbohydrates);
-                    formData.append('protein', params.protein);
-                    formData.append('fiber', params.fiber);
-                    formData.append('sugar', params.sugar);
-                    formData.append('sodium', params.sodium);
-                    formData.append('ingredients', JSON.stringify(params.ingredients));
-                    if(params.file)
-                        formData.append('file', params.file);
-
-                    try {
-                        console.log(formData);
-                        return fetch('/api/meal', {
-                            method: 'POST',
-                            body: formData,
-                        }).then((response) => {
-                            if (response.ok) {
-                                // Handle successful upload
-                            } else {
-                                // Handle error
-                            }
-                        })
-                    } catch (error) {
-                    console.error('Server error:', error.message);
-                    }
-                }}
+                onSubmit={handleSubmit}
                 >
                 {({ Field, ArrayField }) => (
                     <FormLayout>
