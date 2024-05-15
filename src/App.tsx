@@ -14,7 +14,6 @@ import {
   IconButton,
   VStack,
   Flex,
-  HStack,
 } from "@chakra-ui/react";
 
 import { FallInPlace } from "../components/motion/fall-in-place";
@@ -29,10 +28,6 @@ import {
   FiThumbsUp,
   FiCheck,
   FiCopy,
-  FiFacebook,
-  FiGithub,
-  FiInstagram,
-  FiTwitter,
 } from "react-icons/fi";
 import { Features } from "../components/features";
 import { BackgroundGradient } from "../components/gradients/background-gradient";
@@ -78,12 +73,12 @@ const HeroSection: React.FC = () => {
           >
             <FallInPlace delay={0.8}>
               <ButtonGroup spacing={4} pr={"5"} pt={"5"} alignItems="center">
-                <ButtonLink colorScheme="primary" size="lg" href="/register">
+                <ButtonLink colorScheme="primary" size="lg" to="/register">
                   Get Started
                 </ButtonLink>
                 <ButtonLink
                   size="lg"
-                  href="/login"
+                  to="/login"
                   variant="outline"
                   rightIcon={
                     <Icon
