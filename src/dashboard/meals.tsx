@@ -19,6 +19,7 @@ import {
 } from '@saas-ui/file-upload'
 
 import {jwtDecode} from 'jwt-decode';
+
 import { Form, FormLayout, createField } from '@saas-ui/forms'
 const Meals = () => {
     const snackbar = useSnackbar();
@@ -96,15 +97,6 @@ const Meals = () => {
             }).catch(() => {
                 
             })
-
-
-            if (response.ok) {
-                // Handle successful upload
-                console.log('Upload successful');
-            } else {
-                // Handle error
-                console.error('Upload failed');
-            }
         } catch (error) {
             console.error('Server error:', error.message);
         }
