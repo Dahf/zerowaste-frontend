@@ -66,10 +66,12 @@ const Meals = () => {
         const formData = new FormData();
         console.log(params)
         for (const key in params) {
-            if (key === 'file') {
-                formData.append('image', params.file); // Datei mit dem Namen 'image' anhängen
+            if (key === 'ingredients' && Array.isArray(params[key])) {
+              formData.append(key, JSON.stringify(params[key])); // Konvertiere Array von Objekten zu JSON String
+            } else if (key === 'file') {
+              formData.append('image', params.file); // Datei mit dem Namen 'image' anhängen
             } else {
-                formData.append(key, params[key]);
+              formData.append(key, params[key]);
             }
         }
 
