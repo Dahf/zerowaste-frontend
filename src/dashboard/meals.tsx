@@ -85,9 +85,9 @@ const Meals = () => {
             });
 
             snackbar.promise(Promise.resolve(response), {
-                loading: 'Einloggen...',
-                success: 'Sie haben sich erfolgreich angemeldet.',
-                error: "Wir konnten Sie nicht anmelden.",
+                loading: 'Erstellen...',
+                success: 'Die Mahlzeit wurde erfolgreich hinzugefügt.',
+                error: "Wir konnten die Mahlzeit nicht erstellen.",
             });
             response.then(() => {
                 
