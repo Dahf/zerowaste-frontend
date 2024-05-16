@@ -10,16 +10,18 @@ import axios from 'axios';
 import { Section } from '../../components/section';
 import { BackgroundGradient } from '../../components/gradients/background-gradient';
 import { PageTransition } from '../../components/motion/page-transition';
-import { SubmitButton } from '@saas-ui/react';
+import { SubmitButton, useSnackbar } from '@saas-ui/react';
 import { Text } from '@chakra-ui/react'
 import {
   FileUpload,
   FileUploadTrigger,
   FileUploadDropzone,
 } from '@saas-ui/file-upload'
+
+import {jwtDecode} from 'jwt-decode';
 import { Form, FormLayout, createField } from '@saas-ui/forms'
 const Meals = () => {
-
+    const snackbar = useSnackbar();
     const UploadField = createField(
         forwardRef((props, ref) => {
           const { onChange, ...rest } = props
@@ -76,7 +78,25 @@ const Meals = () => {
         }
 
         try {
-            const response = await axios.post('/api/meal', formData );
+            const token = await axios.get('/api/token');
+            const decoded = jwtDecode(token.data.accessToken);
+            const response = axios.post('/api/meal', formData, {
+              headers: {
+                  Authorization: `Bearer ${token.data.accessToken}`
+              }
+            });
+
+            snackbar.promise(Promise.resolve(response), {
+                loading: 'Erstellen...',
+                success: 'Die Mahlzeit wurde erfolgreich hinzugefügt.',
+                error: "Wir konnten die Mahlzeit nicht erstellen.",
+            });
+            response.then(() => {
+                
+            }).catch(() => {
+                
+            })
+
 
             if (response.ok) {
                 // Handle successful upload
