@@ -17,6 +17,8 @@ import {
   FileUploadTrigger,
   FileUploadDropzone,
 } from '@saas-ui/file-upload'
+
+import {jwtDecode} from 'jwt-decode';
 import { Form, FormLayout, createField } from '@saas-ui/forms'
 const Meals = () => {
     const snackbar = useSnackbar();
@@ -74,7 +76,13 @@ const Meals = () => {
         }
 
         try {
-            const response = axios.post('/api/meal', formData );
+            const token = await axios.get('/api/token');
+            const decoded = jwtDecode(token.data.accessToken);
+            const response = axios.post('/api/meal', formData, {
+              headers: {
+                  Authorization: `Bearer ${token.data.accessToken}`
+              }
+            });
 
             snackbar.promise(Promise.resolve(response), {
                 loading: 'Einloggen...',
