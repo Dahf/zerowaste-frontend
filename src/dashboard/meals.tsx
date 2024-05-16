@@ -10,7 +10,7 @@ import axios from 'axios';
 import { Section } from '../../components/section';
 import { BackgroundGradient } from '../../components/gradients/background-gradient';
 import { PageTransition } from '../../components/motion/page-transition';
-import { SubmitButton } from '@saas-ui/react';
+import { SubmitButton, useSnackbar } from '@saas-ui/react';
 import { Text } from '@chakra-ui/react'
 import {
   FileUpload,
@@ -19,7 +19,7 @@ import {
 } from '@saas-ui/file-upload'
 import { Form, FormLayout, createField } from '@saas-ui/forms'
 const Meals = () => {
-
+    const snackbar = useSnackbar();
     const UploadField = createField(
         forwardRef((props, ref) => {
           const { onChange, ...rest } = props
@@ -74,7 +74,19 @@ const Meals = () => {
         }
 
         try {
-            const response = await axios.post('/api/meal', formData );
+            const response = axios.post('/api/meal', formData );
+
+            snackbar.promise(Promise.resolve(response), {
+                loading: 'Einloggen...',
+                success: 'Sie haben sich erfolgreich angemeldet.',
+                error: "Wir konnten Sie nicht anmelden.",
+            });
+            response.then(() => {
+                
+            }).catch(() => {
+                
+            })
+
 
             if (response.ok) {
                 // Handle successful upload
