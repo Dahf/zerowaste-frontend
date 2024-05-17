@@ -151,7 +151,7 @@ const Meals = () => {
                         <Field
                             name="calories"
                             label="Calories"
-                            type="text"
+                            type="number"
                             placeholder="Calories"
                         />
                         </GridItem>
@@ -160,7 +160,7 @@ const Meals = () => {
                         <Field
                             name="fat"
                             label="Fat"
-                            type="text"
+                            type="number"
                             placeholder="Fat"
                         />
                         </GridItem>
@@ -169,7 +169,7 @@ const Meals = () => {
                         <Field
                             name="carbohydrates"
                             label="Carbohydrates"
-                            type="text"
+                            type="number"
                             placeholder="Carbohydrates"
                         />
                         </GridItem>
@@ -178,7 +178,7 @@ const Meals = () => {
                         <Field
                             name="protein"
                             label="Protein"
-                            type="text"
+                            type="number"
                             placeholder="Protein"
                         />
                         </GridItem>
@@ -187,7 +187,7 @@ const Meals = () => {
                         <Field
                             name="fiber"
                             label="Fiber"
-                            type="text"
+                            type="number"
                             placeholder="Fiber"
                         />
                         </GridItem>
@@ -196,7 +196,7 @@ const Meals = () => {
                         <Field
                             name="sugar"
                             label="Sugar"
-                            type="text"
+                            type="number"
                             placeholder="Sugar"
                         />
                         </GridItem>
@@ -205,7 +205,7 @@ const Meals = () => {
                         <Field
                             name="sodium"
                             label="Sodium"
-                            type="text"
+                            type="number"
                             placeholder="Sodium"
                         />
                         </GridItem>
