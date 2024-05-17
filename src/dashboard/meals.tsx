@@ -137,13 +137,15 @@ const Meals = () => {
                         type="textarea"
                         label="Description"
                         placeholder="Optional description"
+                        isRequired
                     />
-                    <UploadField name="file" label="Meal Image" />
+                    <UploadField name="file" label="Meal Image" isRequired />
                     <Field
                         name="servingSize"
                         label="Serving Size"
                         type="text"
                         placeholder="Serving Size"
+                        isRequired
                     />
 
                     <SimpleGrid columns={3} spacing={4}>
@@ -216,19 +218,22 @@ const Meals = () => {
                             name={`ingredients.$.name`}
                             label={`Ingredient Name`}
                             type="text"
-                            placeholder="Ingredient Name"
+                            placeholder="Butter"
+                            isRequired
                         />
                         <Field
                             name={`ingredients.$.measure`}
                             label={`Measure`}
                             type="text"
-                            placeholder="Measure"
+                            placeholder="Grams"
+                            isRequired
                         />
                         <Field
                             name={`ingredients.$.quantity`}
                             label={`Quantity`}
                             type="text"
-                            placeholder="Quantity"
+                            placeholder="100"
+                            isRequired
                         />
                     </ArrayField>
 
