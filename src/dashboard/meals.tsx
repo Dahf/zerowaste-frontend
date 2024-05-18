@@ -80,7 +80,6 @@ const Meals = () => {
 
         try {
             const token = await axios.get('/api/token');
-            const decoded = jwtDecode(token.data.accessToken);
             const response = axios.post('/api/meal', formData, {
               headers: {
                   Authorization: `Bearer ${token.data.accessToken}`
@@ -109,6 +108,7 @@ const Meals = () => {
                 <Form
                 defaultValues={{
                     name: '',
+                    category: '',
                     description: '',
                     servingSize: '',
                     calories: '',
@@ -129,6 +129,13 @@ const Meals = () => {
                         label="Name"
                         type="text"
                         help="Choose a name for this project"
+                        rules={{ required: true }}
+                    />
+                    <Field
+                        name="category"
+                        label="Category"
+                        type="text"
+                        placeholder="Choose a category"
                         rules={{ required: true }}
                     />
 
