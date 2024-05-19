@@ -18,7 +18,6 @@ import {
   FileUploadDropzone,
 } from '@saas-ui/file-upload'
 import Select from '../../components/Select';
-import type { Option } from '../../components/Select/types';
 
 import { Form, FormLayout, createField } from '@saas-ui/forms'
 import { useEffect, useState } from 'react';
@@ -28,8 +27,8 @@ const Meals = () => {
     useEffect(() => {
       const fetchCategories = async () => {
         try {
-          const response = await axios.get('/api/categories');
-          setCategories(response.data.categories);
+          const response = await axios.get('https://silasbeckmann.de/api/categories');
+          setCategories(response.data.categories.map(category => ({ label: category, value: category })));
         } catch (error) {
           console.error('Error fetching categories:', error);
         }
