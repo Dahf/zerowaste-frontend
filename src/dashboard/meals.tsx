@@ -24,6 +24,7 @@ import { useEffect, useState } from 'react';
 const Meals = () => {
     const snackbar = useSnackbar();
     const [categories, setCategories] = useState();
+    const [selectedCategory, setSelectedCategory] = useState();
     useEffect(() => {
       const fetchCategories = async () => {
         try {
@@ -82,6 +83,7 @@ const Meals = () => {
     const handleSubmit = async (params) => {
         const formData = new FormData();
         console.log(params)
+        formData.append("category", selectedCategory);
         for (const key in params) {
             if (key === 'ingredients' && Array.isArray(params[key])) {
               formData.append(key, JSON.stringify(params[key])); // Konvertiere Array von Objekten zu JSON String
@@ -145,19 +147,14 @@ const Meals = () => {
                         help="Choose a name for this project"
                         isRequired
                     />
-                    <Field
-                        name="category"
-                        label="Category"
-                        type="text"
-                        placeholder="Choose a category"
-                        isRequired
-                      
-                    />
                     <Select
                       // Label displayed above the field
                       label="Single"
                       // String displayed before value selected
                       placeholder="Select a category"
+                      onChange={(value) => {
+                        setSelectedCategory(value);
+                      }}
                       // Array of Option type
                       options={categories} 
                       onClear={function (): void {
