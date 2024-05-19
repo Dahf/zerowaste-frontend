@@ -23,8 +23,8 @@ import { Form, FormLayout, createField } from '@saas-ui/forms'
 import { useEffect, useState } from 'react';
 const Meals = () => {
     const snackbar = useSnackbar();
-    const [categories, setCategories] = useState();
-    const [selectedCategory, setSelectedCategory] = useState();
+    const [categories, setCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState("");
     useEffect(() => {
       const fetchCategories = async () => {
         try {
@@ -153,9 +153,10 @@ const Meals = () => {
                       // String displayed before value selected
                       placeholder="Select a category"
                       onChange={(value) => {
-                        console.log(value)
-                        setSelectedCategory(value);
+                        if(value != undefined)
+                          setSelectedCategory(value);
                       }}
+                      onSearch={(query) => {console.log(query); setSelectedCategory(query)}}
                       // Array of Option type
                       options={categories} 
                       onClear={function (): void {
