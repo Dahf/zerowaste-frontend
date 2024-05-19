@@ -153,6 +153,7 @@ const Meals = () => {
                       // String displayed before value selected
                       placeholder="Select a category"
                       onChange={(value) => {
+                        console.log(value)
                         setSelectedCategory(value);
                       }}
                       // Array of Option type
