@@ -83,6 +83,10 @@ const Meals = () => {
     const handleSubmit = async (params) => {
         const formData = new FormData();
         console.log(params)
+        if(selectedCategory == "" || selectedCategory == undefined || selectedCategory == null){
+          snackbar.error("Wir konnten die Mahlzeit nicht erstellen.")
+          return;
+        }
         formData.append("category", selectedCategory);
         for (const key in params) {
             if (key === 'ingredients' && Array.isArray(params[key])) {
@@ -148,10 +152,8 @@ const Meals = () => {
                         isRequired
                     />
                     <Select
-                      // Label displayed above the field
                       label="Category"
-                      // String displayed before value selected
-                      placeholder="Select a category"
+                      placeholder="Select a category or create your own!"
                       onChange={(value) => {
                         if(value != undefined)
                           setSelectedCategory(value);
@@ -159,8 +161,8 @@ const Meals = () => {
                       onSearch={(query) => {console.log(query); setSelectedCategory(query)}}
                       // Array of Option type
                       options={categories} 
-                      onClear={function (): void {
-                        throw new Error('Function not implemented.');
+                      onClear={() => {
+                        setSelectedCategory("");
                       }}                    
                     />
 
