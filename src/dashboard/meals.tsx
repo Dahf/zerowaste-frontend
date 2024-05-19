@@ -149,7 +149,7 @@ const Meals = () => {
                     />
                     <Select
                       // Label displayed above the field
-                      label="Single"
+                      label="Category"
                       // String displayed before value selected
                       placeholder="Select a category"
                       onChange={(value) => {
