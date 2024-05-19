@@ -82,8 +82,7 @@ const Meals = () => {
 
     const handleSubmit = async (params) => {
         const formData = new FormData();
-        console.log(params)
-        if(selectedCategory == "" || selectedCategory == undefined || selectedCategory == null){
+        if(!selectedCategory){
           snackbar.error("Wir konnten die Mahlzeit nicht erstellen.")
           return;
         }
