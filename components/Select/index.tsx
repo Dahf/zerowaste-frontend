@@ -80,6 +80,7 @@ function Select<T>(props: SelectProps<T>) {
       {label && <FormLabel>{label}</FormLabel>}
       <InputGroup>
         <Input
+          autoComplete='off'
           ref={inputRef}
           onFocus={() => {
             handleFocusInput();
