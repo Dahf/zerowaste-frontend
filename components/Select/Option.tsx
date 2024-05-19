@@ -18,7 +18,7 @@ function Option<T>(props: OptionProps<T>) {
 
   function getBackgroundColor() {
     if (selected && !multiple) {
-      return isDark ? 'blue.500' : 'blue.500';
+      return isDark ? 'primary.500' : 'primary.500';
     }
 
     return 'transparent';
