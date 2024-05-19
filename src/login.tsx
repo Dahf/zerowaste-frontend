@@ -35,7 +35,13 @@ const Login = () => {
                         email: values.email,
                         password: values.password
                     });
-                    navigate("/meals");
+                    if (response.status >= 200 && response.status < 300) {
+                      navigate("/meals");
+                    } else {
+                      console.error('Unexpected response status:', response.status);
+                      // Handle unexpected response status
+                    }
+                    
                     actions.setSubmitting(false);
                 }}
             >

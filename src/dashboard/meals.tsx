@@ -17,12 +17,27 @@ import {
   FileUploadTrigger,
   FileUploadDropzone,
 } from '@saas-ui/file-upload'
-
-import {jwtDecode} from 'jwt-decode';
+import Select from '../../components/Select';
+import type { Option } from '../../components/Select/types';
 
 import { Form, FormLayout, createField } from '@saas-ui/forms'
+import { useEffect, useState } from 'react';
 const Meals = () => {
     const snackbar = useSnackbar();
+    const [categories, setCategories] = useState();
+    useEffect(() => {
+      const fetchCategories = async () => {
+        try {
+          const response = await axios.get('/api/categories');
+          setCategories(response.data);
+        } catch (error) {
+          console.error('Error fetching categories:', error);
+        }
+      };
+  
+      fetchCategories();
+    }, []);
+
     const UploadField = createField(
         forwardRef((props, ref) => {
           const { onChange, ...rest } = props
@@ -129,14 +144,26 @@ const Meals = () => {
                         label="Name"
                         type="text"
                         help="Choose a name for this project"
-                        rules={{ required: true }}
+                        isRequired
                     />
                     <Field
                         name="category"
                         label="Category"
                         type="text"
                         placeholder="Choose a category"
-                        rules={{ required: true }}
+                        isRequired
+                      
+                    />
+                    <Select
+                      // Label displayed above the field
+                      label="Single"
+                      // String displayed before value selected
+                      placeholder="Select a category"
+                      // Array of Option type
+                      options={categories} 
+                      onClear={function (): void {
+                        throw new Error('Function not implemented.');
+                      }}                    
                     />
 
                     <Field
