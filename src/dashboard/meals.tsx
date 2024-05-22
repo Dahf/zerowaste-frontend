@@ -134,7 +134,7 @@ const Meals = () => {
                     fat: '',
                     carbohydrates: '',
                     protein: '',
-                    fiber: '',
+                    energy: '',
                     sugar: '',
                     sodium: '',
                     ingredients: [{ name: '', measure: '', quantity: '' }],
@@ -184,6 +184,15 @@ const Meals = () => {
                     <SimpleGrid columns={3} spacing={4}>
                         <GridItem colSpan={1}>
                         <Field
+                            name="energy"
+                            label="Energy"
+                            type="number"
+                            placeholder="Energy"
+                        />
+                        </GridItem>
+                        
+                        <GridItem colSpan={1}>
+                        <Field
                             name="calories"
                             label="Calories"
                             type="number"
@@ -215,15 +224,6 @@ const Meals = () => {
                             label="Protein"
                             type="number"
                             placeholder="Protein"
-                        />
-                        </GridItem>
-
-                        <GridItem colSpan={1}>
-                        <Field
-                            name="fiber"
-                            label="Fiber"
-                            type="number"
-                            placeholder="Fiber"
                         />
                         </GridItem>
 
